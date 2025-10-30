@@ -67,7 +67,6 @@ pub async fn create_order(
         created_at: chrono::Utc::now(),
     };
 
-    // Tangkap error dengan lebih baik
     let insert_result = match order_collection.insert_one(&new_order, None).await {
         Ok(result) => result,
         Err(_) => return Err(Custom(Status::InternalServerError, Json(json!({"error": "Failed to create order"})))),
@@ -82,10 +81,8 @@ pub async fn create_order(
             })))
         }
         Err(e) => {
-            // Cleanup failed order - abaikan error cleanup
             let _ = order_collection.delete_one(doc! {"_id": insert_result.inserted_id}, None).await;
-            
-            // Gunakan error message yang aman
+
             Err(Custom(
                 Status::InternalServerError, 
                 Json(json!({
@@ -114,7 +111,6 @@ pub async fn midtrans_webhook(
             
             let collection: Collection<Order> = db.collection("orders");
             
-            // Tentukan status baru
             let new_status = if transaction_status == "settlement" {
                 OrderStatus::Paid
             } else if transaction_status == "deny" || transaction_status == "cancel" || transaction_status == "expire" {
@@ -125,11 +121,8 @@ pub async fn midtrans_webhook(
             };
 
             println!("New status to set: {:?}", new_status);
-            
-            // ✅ Buat update document
             let update = doc! { "$set": { "status": new_status.to_string() } };
             
-            // ✅ Coba update dengan _id (ObjectId)
             if let Ok(object_id) = ObjectId::parse_str(order_id) {
                 let filter = doc! { "_id": object_id };
                 
@@ -148,7 +141,6 @@ pub async fn midtrans_webhook(
                 }
             }
             
-            // ✅ Jika update pertama gagal, coba dengan field lain
             let filter = doc! { "midtrans_order_id": order_id };
             match collection.update_one(filter, update, None).await {
                 Ok(result) => {
