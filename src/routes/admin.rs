@@ -52,7 +52,6 @@ pub async fn login(
     }
 }
 
-// --- Event Management ---
 #[get("/events")]
 pub async fn admin_get_events(
     db: &State<Database>, 
@@ -66,7 +65,7 @@ pub async fn admin_get_events(
     
     let mut events = Vec::new();
     while let Some(event) = cursor
-        .try_next()  // Sekarang akan bekerja karena import TryStreamExt
+        .try_next()
         .await
         .map_err(|_| Status::InternalServerError)? {
         events.push(event);
@@ -93,7 +92,6 @@ pub async fn create_event(
     Ok(Json(new_event))
 }
 
-// --- Order Management ---
 #[get("/orders")]
 pub async fn get_orders(
     db: &State<Database>, 
@@ -111,7 +109,7 @@ pub async fn get_orders(
     
     let mut orders = Vec::new();
     while let Some(order) = cursor
-        .try_next()  // Sekarang akan bekerja karena import TryStreamExt
+        .try_next()
         .await
         .map_err(|_| Status::InternalServerError)? {
         orders.push(order);
