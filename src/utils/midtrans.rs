@@ -73,7 +73,6 @@ pub async fn create_midtrans_transaction(
         customer_details,
     };
 
-    // ✅ Perbaiki base64 encoding modern (tanpa deprecated)
     let credentials = format!("{}:", server_key);
     let encoded = general_purpose::STANDARD.encode(credentials);
     let auth_header = format!("Basic {}", encoded);
