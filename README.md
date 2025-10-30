@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # ticketing-app
 =======
 # Ticketing App - Rust, Rocket, & MongoDB
@@ -135,4 +134,3 @@ Testing menggunakan Jest dan Supertest.
 | `/api/admin/orders/<id>/send_ticket`  | POST   | Admin  | Mengirim tiket ke email pembeli                |
 
 *Semua endpoint `/api/admin/*` (kecuali `/login`) memerlukan header `Authorization: Bearer <JWT_TOKEN>`.*
->>>>>>> 5d3d468 (Initial commit)
