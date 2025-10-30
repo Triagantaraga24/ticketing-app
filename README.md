@@ -1,5 +1,3 @@
-# ticketing-app
-=======
 # Ticketing App - Rust, Rocket, & MongoDB
 
 Aplikasi web ticketing sederhana yang dibangun dengan Rust (framework Rocket), MongoDB, dan mengintegrasikan Midtrans untuk pembayaran serta Resend untuk pengiriman email.
