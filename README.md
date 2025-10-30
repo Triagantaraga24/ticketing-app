@@ -43,7 +43,7 @@ Alur ini dirancang agar pengguna dapat membeli tiket dengan cepat tanpa hambatan
 
 1.  **Clone Repository**
     ```powershell
-    git clone <URL-REPOSITORY-ANDA>
+    git clone https://github.com/Triagantaraga24/ticketing-app.git
     cd ticketing-app
     ```
 
