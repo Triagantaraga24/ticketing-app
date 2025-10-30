@@ -94,29 +94,6 @@ Alur ini dirancang agar pengguna dapat membeli tiket dengan cepat tanpa hambatan
     ```
     Server akan berjalan di `http://localhost:8000`.
 
-## 🧪 Menjalankan Testing
-
-Testing menggunakan Jest dan Supertest.
-
-1.  **Install Dependencies Test**
-    Pastikan Anda sudah berada di folder `tests`.
-    ```powershell
-    cd tests
-    npm install
-    cd ..
-    ```
-
-2.  **Jalankan Server**
-    Pastikan server backend sudah berjalan di `http://localhost:8000` (lihat langkah 4 di atas).
-
-3.  **Eksekusi Test**
-    Dari root proyek, jalankan perintah:
-    ```powershell
-    cd tests
-    npm test
-    ```
-    Test akan menjalankan serangkaian permintaan ke API Anda dan memverifikasi responsnya.
-
 ## 📡 Daftar Endpoint API
 
 | Endpoint                              | Method | Akses  | Deskripsi                                      |
